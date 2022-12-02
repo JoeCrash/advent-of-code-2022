@@ -2,10 +2,9 @@ const fs = require('fs');
 let data = '';
 fs.readFile("inputs/day_2_input.txt", "utf-8", (err, data) => {
     if (err) throw err;
-    const part1Score = parseGuideInputs(data); //split data and play rounds 1
-    const part2Score = parseGuideInputs(data, 2); //split data and play rounds 2
-    console.log('total Points part 1', part1Score);
-    console.log('total Points part 2', part2Score);
+    const scores = parseGuideInputs(data); //split data and play rounds
+    console.log('total Points part 1', scores[0]);
+    console.log('total Points part 2', scores[1]);
 
 });
 function getScores(r){
@@ -27,7 +26,6 @@ function playRoundPart1(r){
     }else{
         myScore += 0; //loss
     }
-    console.log("rnd1", myScore);
     return myScore; //return round total
 }
 function playRoundPart2(r){
@@ -53,11 +51,12 @@ function playRoundPart2(r){
     }
 }
 function parseGuideInputs(data, partNumber = 1){
-    let score = 0;
+    let score = 0, score2 = 0;
     const dataArr = data.split('\n');
     dataArr.pop(); //remove the last empty element from the lazy split
     dataArr.map((r)=>{
-        score += partNumber === 1 ? playRoundPart1(r) : playRoundPart2(r);
+        score += playRoundPart1(r);
+        score2 += playRoundPart2(r);
     });
-    return score;
+    return [score, score2];
 };
