@@ -10,6 +10,4 @@ fs.readFile("inputs/day_1_input.txt", "utf-8", (err, data) => {
 
 function parseCalorieInputs(data){
     return data.split('\n\n').map(elf => {return elf.split('\n').reduce((candy, treats) => +(candy) + +(treats), 0)}); //used ternary to convert string to number.
-}
-
-
+};
