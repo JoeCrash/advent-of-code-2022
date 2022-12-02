@@ -3,8 +3,9 @@ let data = '';
 fs.readFile("inputs/day_1_input.txt", "utf-8", (err, data) => {
     if (err) throw err;
     const calorieTotals = parseCalorieInputs(data); //split data and calculate totals for each elf
-    const highest = calorieTotals.sort((a,b) => b - a)[0]; //sort the totals in DESC order and return the first index
-    console.log("highest calorie count:", highest);
+    const sortedTotals = calorieTotals.sort((a,b) => b - a)[0]; //sort the totals in DESC order and return the first index
+    console.log("highest calorie count:", sortedTotals[0]);
+    console.log("top 3 calorie total:", sortedTotals[0] + sortedTotals[1] + sortedTotals[2]);
 });
 
 function parseCalorieInputs(data){
